@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BLE 시뮬레이터</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+      }
+      #mode-button { position : absolute; top: 10px; left: 10px; z-index: 100 }
+      button { padding: 8px 15px; margin-right: 5px; }
+    </style>
+  </head>
+  <body>
+    <div id="mode-button">
+      <button id="btn-2d">2D 모드</button>
+      <button id="btn-3d" disabled="disabled">3D 모드</button>
+    </div>
+  <div id="sketch-container"></div>
+    <script>
+      // 모드 전환 로직
+      document.getElementById('btn-2d').addEventListener('click', () => loadScript('js/2d-visualization.js'));
+      document.getElementById('btn-3d').addEventListener('click', () => loadScript('js/3d-visualization.js'));
+
+      function loadScript(scriptName) {
+        const container = document.getElementById('sketch-container');
+        container.innerHTML = '';
+
+        const script = document.createElement('script');
+        script.src = scriptName;
+        container.appendChild(script);
+      }
+
+      // 기본으로 2D 로드
+      window.onload = () => loadScript('js/2d-visualization.js');
+    </script>
+  </body>
+</html>
